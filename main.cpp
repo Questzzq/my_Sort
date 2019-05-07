@@ -43,8 +43,39 @@ void select_Sort(std::vector<int> &nums, const int n) {
     }
 }
 
-void insert_Sort(std::vector<int> &nums, const int n);
-void quick_Sort(std::vector<int> &nums, const int n);
+// 返回应该插入的位置
+int binary_Search(std::vector<int> &nums, int n, int value) {
+    int left = 0;
+    int right = n - 1;
+    int mid = 0;
+    while(left <= right) {
+        mid = left + ((right - left) >> 1);
+        if(nums[mid] > value)
+            right--;
+        else if(nums[mid] < value)
+            left++;
+        else return mid;
+    }
+    return mid;
+}
+
+void insert_Sort(std::vector<int> &nums, const int n) {
+    int tmp;
+    int position;
+    for(int i = 0; i < n; i++) {
+        tmp = nums[i];
+        position = binary_Search(nums, i + 1, tmp);
+        for(int j = i; j > position; j--) {
+            nums[j] = nums[j - 1];
+        }
+        nums[position] = tmp;
+    }
+}
+
+void quick_Sort(std::vector<int> &nums, const int n) {
+
+}
+
 void shell_Sort(std::vector<int> &nums, const int n);
 void merge_Sort(std::vector<int> &nums, const int n);
 void heap_Sort(std::vector<int> &nums, const int n);
@@ -65,7 +96,8 @@ int main() {
 //    cout << nums.size() << endl;
     input_Array(nums, n);
 //    bubble_Sort(nums, n);
-    select_Sort(nums, n);
+//    select_Sort(nums, n);
+    insert_Sort(nums, n);
     print_Array(nums, n);
     return 0;
 }

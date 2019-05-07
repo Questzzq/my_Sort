@@ -13,6 +13,8 @@ void input_Array(std::vector<int> &nums, const int n);  // 输入
 template <class T>
 void my_Swap(T &num1, T &num2); // 交换
 
+int binary_Search(std::vector<int> &nums, int n, int value);
+
 // 七种排序方法
 void bubble_Sort(std::vector<int> &nums, const int n);
 void select_Sort(std::vector<int> &nums, const int n);
