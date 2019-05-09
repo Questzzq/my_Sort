@@ -5,6 +5,7 @@
 #include "MY_SORT.h"
 using namespace std;
 
+// 模板
 template<typename T>
 void input_Array(vector<T> &nums, const int n) {
     T tmp;
