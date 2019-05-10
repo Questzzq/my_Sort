@@ -172,8 +172,34 @@ void shell_Sort(std::vector<T> &nums, const int n) {
     shell_Insert_Sort(nums, 0, 1);
 }
 
+/*
+ * 对排序的核心算法, 堆调整
+ * 堆本身就是一棵完全二叉树, 所以可以用数组来存储
+ * 堆排序的核心是建堆,传入参数为数组，根节点位置，数组长度
+ */
 template<typename T>
-void heap_Sort(std::vector<T> &nums, const int n);
+void heap_Adjust(std::vector<T> &nums, int root, int length) {
+    int lchild = 2 * root + 1; // 根节点的左儿子下标
+    // 左儿子下标不能超出数组长度
+    if(lchild < length) {
+        int flag = lchild; // 用来保存左右儿子节点的较大值下标
+        int rchild = lchild + 1;
+        if(rchild < length) {
+            if(nums[lchild] < nums[rchild])
+                flag = rchild;
+        }
+
+        if(nums[root] < nums[flag]) {
+            my_Swap(nums[root], nums[flag]);
+            heap_Adjust(nums, flag, length);
+        }
+    }
+}
+
+template<typename T>
+void heap_Sort(std::vector<T> &nums, const int n) {
+
+}
 
 template<typename T>
 void print_Array(vector<T> &nums, const int len) {
